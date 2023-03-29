@@ -23,7 +23,12 @@ public class AVLTree {
     public int calculateNode(Node node){
         return 0;
     }
-    public void add(Node node){
+    public void add(int item){
+
+    }
+
+    
+    private void add(Node node,int item){
 
     }
     public int height(Node node){
