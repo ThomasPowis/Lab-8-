@@ -9,6 +9,7 @@ Tasks:
 Methods:
 
 1.) rotateLeft
+
 2.) rotateRight
 
 3.) calculateNode
