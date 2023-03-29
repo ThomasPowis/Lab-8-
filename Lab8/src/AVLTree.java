@@ -19,12 +19,71 @@ public class AVLTree {
 		        tree.add(list[i]);
 	         }
     }
+    //This was built with the help of chatGPT
     public void rotateLeft(Node node){
-
-    }
-    public void rotateRight(Node node){
+        // Store the right child of the node as a separate variable
+        Node rightChild = node.right;
         
+        // Make the right child's left child the new right child of the node
+        node.right = rightChild.left;
+        if (rightChild.left != null) {
+            rightChild.left.parent = node;
+        }
+        
+        // Make the node's parent the new parent of its right child
+        rightChild.parent = node.parent;
+        if (node.parent == null) {
+            root = rightChild;
+        } else if (node == node.parent.left) {
+            node.parent.left = rightChild;
+        } else {
+            node.parent.right = rightChild;
+        }
+        
+        // Make the node the new left child of its former right child
+        rightChild.left = node;
+        node.parent = rightChild;
+        
+        // Update the heights and balance factors of the nodes involved in the rotation
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
+        rightChild.height = Math.max(height(rightChild.left), height(rightChild.right)) + 1;
+        node.balanceFactor = calculateNode(node);
+        rightChild.balanceFactor = calculateNode(rightChild);
     }
+
+    //This was built with the help of chatGPT
+    public void rotateRight(Node node){
+        // Store the left child of the node as a separate variable
+        Node leftChild = node.left;
+        
+        // Make the left child's right child the new left child of the node
+        node.left = leftChild.right;
+        if (leftChild.right != null) {
+            leftChild.right.parent = node;
+        }
+        
+        // Make the node's parent the new parent of its left child
+        leftChild.parent = node.parent;
+        if (node.parent == null) {
+            root = leftChild;
+        } else if (node == node.parent.right) {
+            node.parent.right = leftChild;
+        } else {
+            node.parent.left = leftChild;
+        }
+        
+        // Make the node the new right child of its former left child
+        leftChild.right = node;
+        node.parent = leftChild;
+        
+        // Update the heights and balance factors of the nodes involved in the rotation
+        node.height = Math.max(height(node.left), height(node.right)) + 1;
+        leftChild.height = Math.max(height(leftChild.left), height(leftChild.right)) + 1;
+        node.balanceFactor = calculateNode(node);
+        leftChild.balanceFactor = calculateNode(leftChild);
+    }
+
+    
     //calculate balance factor
     public int calculateNode(Node node){
         return 0;
