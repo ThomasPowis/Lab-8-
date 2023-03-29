@@ -32,9 +32,11 @@ public class AVLTree {
     public boolean add(int item){
         if (root == null) {
             root = new Node(item);
+            root.height++;
             return true;
         } else {
             // If the root is not null, call the addHelper method to recursively add the element to the tree
+        	root.height++;
             return add(root,item);
         }
     }
