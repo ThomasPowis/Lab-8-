@@ -28,7 +28,11 @@ public class AVLTree {
 
     }
     public int height(Node node){
-        return 0;
+    	if(node == null) {
+    		return 0;
+    	}
+    	
+        return node.height;
     }
     public void print(AVLTree tree){
         
