@@ -10,6 +10,10 @@ Jimmy built the structure for the AVL tree
 
 Thomas built the height method
 
+Jimmy built the add method
+
+Jonathan did the print method
+
 Methods:
 
 1.) rotateLeft
