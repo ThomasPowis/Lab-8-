@@ -4,6 +4,7 @@ public class AVLTree {
     private class Node{
         int val;
         int balanceFactor;
+        int height;
         Node left;
         Node right;
         Node parent;
@@ -12,7 +13,7 @@ public class AVLTree {
         }
     } 
     public static void main(String[] args) {
-        
+         	
     }
     public void rotateLeft(Node node){
 
