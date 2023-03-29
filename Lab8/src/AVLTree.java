@@ -26,4 +26,10 @@ public class AVLTree {
     public void add(Node node){
 
     }
+    public int height(Node node){
+        return 0;
+    }
+    public void print(AVLTree tree){
+        
+    }
 }
