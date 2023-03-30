@@ -86,7 +86,11 @@ public class AVLTree {
     
     //calculate balance factor
     public int calculateNode(Node node){
-        return 0;
+    	if(node == null) {
+    		return 0;
+    	}
+    	else
+    		return height(node.left) - height(node.right);
     }
     public boolean add(int item){
         if (root == null) {
