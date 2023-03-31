@@ -18,6 +18,7 @@ public class AVLTree {
 	        for(int i=0;i<list.length;i++){
 		        tree.add(list[i]);
 	         }
+            tree.traverseForDebugging(tree.root);
     }
     //This was built with the help of chatGPT
     public void rotateLeft(Node node){
@@ -124,7 +125,7 @@ public class AVLTree {
             return false;
         }
     }
-    
+    /* 
     public int height(Node node){
     	if(node == null) {
     		return 0;
@@ -132,7 +133,28 @@ public class AVLTree {
     	
         return node.height;
     }
-    public void print(AVLTree tree){
+    */
+    private int height( Node node){
+        if(node==null){
+            return -1;
+        }
+        return Math.max(height(node.left), height(node.right)) + 1;
+      }
+    public void print(){
         
+    }
+    public void traverseForDebugging(Node node){
+    
+        if (node == null)
+            return;
+ 
+        /* first recur on left child */
+        traverseForDebugging(node.left);
+ 
+        /* then print the data of node */
+        System.out.println(calculateNode(node));
+ 
+        /* now recur on right child */
+        traverseForDebugging(node.right);
     }
 }
