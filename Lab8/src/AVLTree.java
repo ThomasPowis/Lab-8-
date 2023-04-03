@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 
 public class AVLTree {
@@ -16,7 +18,7 @@ public class AVLTree {
 			val=n;
 		}
 	} 
-	public ArrayList<Integer> printOrder = new ArrayList<Integer>();
+	public static ArrayList<Node> printOrder = new ArrayList<Node>();
 
 	public static void main(String[] args) {
 		AVLTree tree = new AVLTree();
@@ -24,9 +26,16 @@ public class AVLTree {
 		for(int i=0;i<list.length;i++){
 			tree.add(list[i]);
 		}
-		tree.traverseForDebugging(tree.root);
-		System.out.println(tree.print());
+		//tree.traverseForDebugging(tree.root);
+		System.out.println(tree.print());   
+
+		// Print the elements of the ArrayList
+		for (Node node : printOrder) {
+			System.out.print(node.val + " ");
+		}
+
 	}
+
 	//This was built with the help of chatGPT
 	public void rotateLeft(Node node){
 		// Store the right child of the node as a separate variable
@@ -141,7 +150,7 @@ public class AVLTree {
         return node.height;
     }
 	 */
-	private int height( Node node){
+	private static int height( Node node){
 		if(node==null){
 			return -1;
 		}
@@ -170,6 +179,7 @@ public class AVLTree {
 		print(bfsOrder, nextLevelNodes);
 	}
 
+	
 	public void traverseForDebugging(Node node){
 
 		if (node == null)
