@@ -29,10 +29,7 @@ public class AVLTree {
 		//tree.traverseForDebugging(tree.root);
 		System.out.println(tree.print());   
 
-		// Print the elements of the ArrayList
-		for (Node node : printOrder) {
-			System.out.print(node.val + " ");
-		}
+		tree.printLevels();
 
 	}
 
@@ -178,8 +175,37 @@ public class AVLTree {
 		}
 		print(bfsOrder, nextLevelNodes);
 	}
-
 	
+	public void printLevels() {
+	    if (root == null) {
+	        return;
+	    }
+	    Queue<Node> queue = new LinkedList<>();
+	    queue.offer(root);
+	    int currentLevel = 1;
+	    int nextLevel = 0;
+	    while (!queue.isEmpty()) {
+	        Node node = queue.poll();
+	        currentLevel--;
+	        if (node == null) {
+	            System.out.print("- ");
+	            continue;
+	        }
+	        System.out.print(node.val + " ");
+	        if (node.left != null || node.right != null) {
+	            queue.offer(node.left);
+	            queue.offer(node.right);
+	            nextLevel += 2;
+	        }
+	        if (currentLevel == 0) {
+	            System.out.println();
+	            currentLevel = nextLevel;
+	            nextLevel = 0;
+	        }
+	    }
+	}
+
+
 	public void traverseForDebugging(Node node){
 
 		if (node == null)
