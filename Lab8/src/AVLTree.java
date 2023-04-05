@@ -121,32 +121,56 @@ public class AVLTree {
 		if (item<node.val) {
 			if (node.left == null) {
 				node.left = new Node(item);
+				node.left.parent = node;
 				return true;
 			} else {
-				return add(node.left,item);
+				node.left.height++;
+				boolean add = add(node.left,item);
+				if(add) {
+					balanceTree(node.left);
+				}
+				return add;
 			}
-		} 
+		}
 		else if (item>node.val) {
 			if (node.right == null) {
 				node.right = new Node(item);
+				node.right.parent = node;
 				return true;
 			} else {
-				return add(node.right,item);
+				node.right.height++;
+				boolean add = add(node.right,item);
+				if(add) {
+					balanceTree(node.right);
+				}
+				return add;
 			}
-		} 
+		}
 		else {
 			return false;
 		}
 	}
-	/* 
-    public int height(Node node){
-    	if(node == null) {
-    		return 0;
-    	}
 
-        return node.height;
-    }
-	 */
+	//Balance Factor method
+	//Built with the help of chatGPT
+	private void balanceTree(Node node) {
+		if (node == null) {
+			return;
+		}
+		if (node.balanceFactor < -1) { // right subtree is deeper
+			if (node.right.balanceFactor > 0) { // right-left case
+				rotateRight(node.right);
+			}
+			rotateLeft(node); // right-right or right-left case
+		} else if (node.balanceFactor > 1) { // left subtree is deeper
+			if (node.left.balanceFactor < 0) { // left-right case
+				rotateLeft(node.left);
+			}
+			rotateRight(node); // left-left or left-right case
+		}
+		balanceTree(node.parent); // continue balancing up the tree
+	}
+
 	private static int height( Node node){
 		if(node==null){
 			return -1;
@@ -175,34 +199,34 @@ public class AVLTree {
 		}
 		print(bfsOrder, nextLevelNodes);
 	}
-	
+
 	public void printLevels() {
-	    if (root == null) {
-	        return;
-	    }
-	    Queue<Node> queue = new LinkedList<>();
-	    queue.offer(root);
-	    int currentLevel = 1;
-	    int nextLevel = 0;
-	    while (!queue.isEmpty()) {
-	        Node node = queue.poll();
-	        currentLevel--;
-	        if (node == null) {
-	            System.out.print("- ");
-	            continue;
-	        }
-	        System.out.print(node.val + " ");
-	        if (node.left != null || node.right != null) {
-	            queue.offer(node.left);
-	            queue.offer(node.right);
-	            nextLevel += 2;
-	        }
-	        if (currentLevel == 0) {
-	            System.out.println();
-	            currentLevel = nextLevel;
-	            nextLevel = 0;
-	        }
-	    }
+		if (root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<>();
+		queue.offer(root);
+		int currentLevel = 1;
+		int nextLevel = 0;
+		while (!queue.isEmpty()) {
+			Node node = queue.poll();
+			currentLevel--;
+			if (node == null) {
+				System.out.print("- ");
+				continue;
+			}
+			System.out.print(node.val + " ");
+			if (node.left != null || node.right != null) {
+				queue.offer(node.left);
+				queue.offer(node.right);
+				nextLevel += 2;
+			}
+			if (currentLevel == 0) {
+				System.out.println();
+				currentLevel = nextLevel;
+				nextLevel = 0;
+			}
+		}
 	}
 
 
