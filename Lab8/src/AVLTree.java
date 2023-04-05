@@ -18,19 +18,44 @@ public class AVLTree {
 			val=n;
 		}
 	} 
-	public static ArrayList<Node> printOrder = new ArrayList<Node>();
 
 	public static void main(String[] args) {
-		AVLTree tree = new AVLTree();
-		int[] list ={72, 10, 25, 63, 91, 4, 85, 50, 13, 44, 57, 88, 97, 39, 78, 30, 21, 48, 65, 99, 60, 76, 33, 55, 82};
-		for(int i=0;i<list.length;i++){
-			tree.add(list[i]);
+		testing();
+	}
+	//Testing method
+	public static void testing() {
+		AVLTree right = new AVLTree();
+		AVLTree left = new AVLTree();
+		AVLTree leftright = new AVLTree();
+		AVLTree rightleft = new AVLTree();
+		int[] leftList = {50,40,60,30,70,80};
+		int[] rightList = {20,10,25,5,15,2};
+		int[] leftRightList = {30,10,35,5,20,15,25};
+		int[] rightLeftList = {2,1,0};
+		for(int i = 0; i < rightList.length; i++) {
+			right.add(rightList[i]);
 		}
-		//tree.traverseForDebugging(tree.root);
-		System.out.println(tree.print());   
-
-		tree.printLevels();
-
+		for(int i = 0; i < leftList.length; i++) {
+			left.add(leftList[i]);
+		}
+		for(int i = 0; i < leftRightList.length; i++) {
+			leftright.add(leftRightList[i]);
+		}
+		for(int i = 0; i < rightLeftList.length; i++) {
+			rightleft.add(rightLeftList[i]);
+		}
+		System.out.println("Right Rotation:");
+		right.printLevels();
+		System.out.println();
+		System.out.println();
+		System.out.println("Left Rotation:");
+		left.printLevels();
+		System.out.println();
+		System.out.println("Left Right Rotation:");
+		leftright.printLevels();
+		System.out.println();
+		System.out.println("Right Left Rotation:");
+		rightleft.printLevels();
 	}
 
 	//This was built with the help of chatGPT
@@ -227,21 +252,5 @@ public class AVLTree {
 				nextLevel = 0;
 			}
 		}
-	}
-
-
-	public void traverseForDebugging(Node node){
-
-		if (node == null)
-			return;
-
-		/* first recur on left child */
-		traverseForDebugging(node.left);
-
-		/* then print the data of node */
-		System.out.println(calculateNode(node));
-
-		/* now recur on right child */
-		traverseForDebugging(node.right);
 	}
 }
