@@ -8,22 +8,8 @@ Tasks:
 
 Jimmy built the structure for the AVL tree
 
-Thomas built the height method
+Thomas built the height method, and the left and right rotation method 
 
-Jimmy built the add method
+Jimmy built the add method and the calculate node method 
 
-Jonathan did the print method
-
-Methods:
-
-1.) rotateLeft
-
-2.) rotateRight
-
-3.) calculateNode
-
-4.) add 
-
-5.) height
-
-6.) print
+Jonathan did the print method, the balanceTree method, and the test method
